@@ -9,6 +9,12 @@
   display: none;
 }
 
-#theme{
+@theme{
   --color-primary:'#5044E5';
+}
+
+@layer base {
+  :root {
+    --color-primary: #5044E5;
+  }
 }
