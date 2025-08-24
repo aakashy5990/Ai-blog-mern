@@ -24,7 +24,7 @@ const BlogList = () => {
               onClick={() => setSelectedCategory(category)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-200 relative
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-200 cursor-pointer relative
                 ${
                   selectedCategory === category
                     ? 'bg-primary text-white'

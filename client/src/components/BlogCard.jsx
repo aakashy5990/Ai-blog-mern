@@ -30,8 +30,7 @@ const BlogCard = ({ blog }) => {
         </h3>
 
         {/* Blog Description */}
-        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-          {description.slice(0,80)}
+        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{"__html" : description.slice(0,80)}}>
         </p>
       </div>
     </div>
