@@ -1,20 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
-*{
-  font-family: "Outfit", sans-serif;
+* {
+  font-family: 'Outfit', sans-serif;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   display: none;
 }
 
-@theme{
-  --color-primary:'#5044E5';
+@theme {
+  --color-primary: '#5044E5';
 }
 
 @layer base {
   :root {
-    --color-primary: #5044E5;
+    --color-primary: #3b82f6; /* Modern Blue */
+    /* Alternative options (uncomment one to use): */
+    /* --color-primary: #8B5CF6;   Purple */
+    /* --color-primary: #06B6D4; Cyan */
+     /* --color-primary: #10B981;Emerald Green */
+    /* --color-primary: #F59E0B; */ /* Amber */
+    /* --color-primary: #EF4444; */ /* Red */
+    /* --color-primary: #EC4899; */ /* Pink */
+    /* --color-primary: #6366F1; */ /* Indigo */
+    /* --color-primary: #059669; */ /* Dark Green */
+    /* --color-primary: #DC2626; */ /* Dark Red */
+    /* --color-primary: #7C3AED; */ /* Violet */
   }
 }
