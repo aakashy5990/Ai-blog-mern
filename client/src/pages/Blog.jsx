@@ -4,11 +4,15 @@ import { useParams } from 'react-router-dom';
 import { blog_data } from '../assets/assets';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Loader from '../components/Loader';
 
 const Blog = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [comments, setComments] = useState([]);
+
+  const [name,setName] = useState('');  
+  const [content,setContent] = useState('');
 
   const fetchBlogData = async () => {
     const data = blog_data.find(item => item._id === id);
@@ -24,8 +28,10 @@ const Blog = () => {
     fetchComments();
   }, []);
 
-  const addComent = async (e) => {
+  const addComment = async (e) => {
     e.preventDefault();
+    console.log(name);
+    console.log(content);
   }
 
   // Function to format date
@@ -179,7 +185,7 @@ const Blog = () => {
               <h4 className="text-lg font-semibold text-gray-900 mb-4">
                 Add a Comment
               </h4>
-              <form onSubmit={addComent} className="space-y-4">
+              <form onSubmit={addComment} className="space-y-4">
                 <div>
                   <label
                     htmlFor="name"
@@ -191,6 +197,8 @@ const Blog = () => {
                     type="text"
                     id="name"
                     name="name"
+                    onChange={(e)=> setName(e.target.value)}
+                    value={name}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Enter your name"
                     required
@@ -206,6 +214,8 @@ const Blog = () => {
                   <textarea
                     id="comment"
                     name="comment"
+                    onChange={(e) => setContent(e.target.value)}
+                    value={content}
                     rows="4"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Write your comment here..."
@@ -343,14 +353,7 @@ const Blog = () => {
 
       <Footer />
     </div>
-  ) : (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-        <p className="text-gray-600">Loading blog post...</p>
-      </div>
-    </div>
-  );
+  ) : <Loader/>
 };
 
 export default Blog;
