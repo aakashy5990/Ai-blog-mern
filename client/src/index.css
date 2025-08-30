@@ -31,3 +31,20 @@
 }
 
 .rich-text { font-size:15px; }
+
+/* In your global CSS file (e.g., index.css) */
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888888; /* gray */
+  border-radius: 10px;
+  border: 2px solid #f0f0f0; /* optional */
+}
+
+/* Optional: scrollbar track */
+.table-container::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+/* scrollbar size */
+.table-container::-webkit-scrollbar {
+  width: 12px;
+}
