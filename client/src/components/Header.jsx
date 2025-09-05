@@ -1,7 +1,17 @@
 import React from 'react';
 import { assets } from '../assets/assets';
+import { useRef } from 'react';
+import { useAppContext } from '../context/AppContext';
 
 const Header = () => {
+  const { setInput, input } = useAppContext();
+  const inputRef = useRef();
+
+  const onSubmitHandler = async e => {
+    e.preventDefault();
+    setInput(inputRef.current.value);
+  };
+
   return (
     <div className="min-h-[90vh] flex flex-col items-center justify-center relative overflow-hidden">
       {/* Gradient Background */}
@@ -36,11 +46,12 @@ const Header = () => {
         </p>
 
         {/* Search Bar */}
-        <form action="">
+        <form onSubmit={onSubmitHandler}>
           <div className="flex items-end max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
             <input
               type="text"
-              placeholder="Search for blogs"
+              ref={inputRef}
+              placeholder="Search blogs by title"
               className="flex-1 px-6 py-4 text-gray-700 placeholder-gray-400 focus:outline-none"
             />
             <button className="px-8 py-4 bg-primary text-white font-medium hover:opacity-90 transition-opacity">

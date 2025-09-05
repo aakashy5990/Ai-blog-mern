@@ -1,9 +1,11 @@
 import React from 'react';
 import { assets } from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../context/AppContext';
 
 const Navbar = () => {
-  const navigate = useNavigate();
+
+  const { navigate, token } = useAppContext();
 
   return (
     <nav className="flex justify-between items-center px-18 py-4 bg-white">
@@ -27,7 +29,8 @@ const Navbar = () => {
           }}
           className="px-6 py-2 rounded-lg font-medium text-white flex gap-2 transition-all duration-200 hover:opacity-90 bg-primary cursor-pointer"
         >
-          Admin Login <img src={assets.arrow} alt="arrow" className="w-3" />
+          {token ? 'DashBoard' : 'Admin Login'}
+          <img src={assets.arrow} alt="arrow" className="w-3" />
         </button>
       </div>
     </nav>

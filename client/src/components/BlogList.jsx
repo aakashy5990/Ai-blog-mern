@@ -4,14 +4,25 @@ import BlogCard from './BlogCard';
 import { blogCategories } from '../assets/assets';
 import { motion } from 'motion/react';
 import { blog_data } from '../assets/assets';
+import { useAppContext } from '../context/AppContext';
 
 const BlogList = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const { blogs, input } = useAppContext();
 
-  const filteredBlogs =
-    selectedCategory === 'All'
-      ? blog_data
-      : blog_data.filter(blog => blog.category === selectedCategory);
+  const filteredBlogs = () => {
+    if (input === '') {
+      return blogs;
+    }
+    return blogs.filter(blog =>
+      blog.title.toLowerCase().includes(input.toLowerCase())
+    );
+  };
+
+  // const filteredBlogs =
+  //   selectedCategory === 'All'
+  //     ? blog_data
+  //     : blog_data.filter(blog => blog.category === selectedCategory);
 
   return (
     <div className="py-16 px-6 bg-white">
@@ -46,9 +57,15 @@ const BlogList = () => {
 
         {/* Blog Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredBlogs.map(blog => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
+          {filteredBlogs()
+            .filter(blog =>
+              selectedCategory === 'All'
+                ? true
+                : blog.category === selectedCategory
+            )
+            .map(blog => (
+              <BlogCard key={blog._id} blog={blog} />
+            ))}
         </div>
       </div>
     </div>
