@@ -1,6 +1,6 @@
 import fs from 'fs';
 import imagekit from '../config/imageKit.js';
-import Blog from '../models/blog.js';
+import Blog from '../models/Blog.js';
 import Comment from '../models/Comment.js';
 
 export const addBlog = async (req, res) => {

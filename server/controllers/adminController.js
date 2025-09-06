@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken";
 import 'dotenv/config'
-import Blog from "../models/blog.js";
+import Blog from "../models/Blog.js";
 import Comment from "../models/Comment.js";
 
 export const adminLogin = async (req, res) => {
