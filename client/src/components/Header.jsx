@@ -12,17 +12,14 @@ const Header = () => {
     setInput(inputRef.current.value);
   };
 
+  const onClear = () => {
+    console.log('clicked');
+    setInput('');
+    inputRef.current.value = '';
+  }
+
   return (
     <div className="min-h-[90vh] flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0">
-        <img
-          src={assets.gradientBackground}
-          alt="gradient background"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
       {/* Content Container */}
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
         {/* AI Feature Badge */}
@@ -60,6 +57,24 @@ const Header = () => {
           </div>
         </form>
       </div>
+
+      {/* Gradient Background */}
+      <div className="absolute inset-0">
+        <img
+          src={assets.gradientBackground}
+          alt="gradient background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="text-center z-1 mt-4">
+        {input && (
+          <button onClick={onClear} className="border font-light text-xs py-1 px-3 rounded-sm shadow-custom-sm cursor-pointer">
+            Clear Search
+          </button>
+        )}
+      </div>
+
     </div>
   );
 };

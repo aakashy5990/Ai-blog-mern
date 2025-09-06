@@ -9,7 +9,7 @@ adminRouter.get("/comments" , auth, getAllComments);
 adminRouter.get("/blogs" , auth, getAllBlogsAdmin);
 adminRouter.post("/delete-comment", auth, getAllBlogsAdmin ,deleteCommentById);
 adminRouter.post("/approved-comment", auth, ApprovedCommentById);
-adminRouter.post("/dashboard", auth, getDashboard);
+adminRouter.get("/dashboard", auth, getDashboard);
 
 
 export default adminRouter;
