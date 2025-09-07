@@ -11,55 +11,61 @@ import { useAppContext } from '../context/AppContext';
 const Blog = () => {
   const { id } = useParams();
 
-  const {axios} = useAppContext();
+  const { axios } = useAppContext();
 
   const [data, setData] = useState(null);
   const [comments, setComments] = useState([]);
 
-  const [name,setName] = useState('');  
-  const [content,setContent] = useState('');
+  const [name, setName] = useState('');
+  const [content, setContent] = useState('');
 
   const fetchBlogData = async () => {
-    try{
+    try {
       const { data } = await axios.get(`/api/blog/${id}`);
       data.success ? setData(data.blog) : toast.error(data.message);
-    }
-    catch(error){
-      toast.error(error.message)
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
   const fetchComments = async () => {
-    try{
-      const data = await axios.post('/api/blog/comments', {blogId: id});
-      data.success ? setComments(data.comments) : toast.error (error.message);
-    }catch(error){
+    try {
+      const { data } = await axios.post('/api/blog/comments', { blogId: id });
+      if (data.success) {
+        setComments(data.comments);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
       toast.error(error.message);
     }
   };
 
-  
-  const addComment = async (e) => {
+  const addComment = async e => {
     e.preventDefault();
-    try{
-      const { data } = await axios.post('/api/blog/add-comment', { blog:id, name, content, })
-      if(data.success){
+    try {
+      const { data } = await axios.post('/api/blog/add-comment', {
+        blog: id,
+        name,
+        content,
+      });
+      if (data.success) {
         toast.success(data.message);
         setName('');
         setContent('');
-      }else{
-        toast.error(data.error);
+      } else {
+        toast.error(data.message);
       }
-    }catch(error){
+    } catch (error) {
       toast.error(error.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchBlogData();
     fetchComments();
   }, []);
-  
+
   // Function to format date
   const formatDate = dateString => {
     const date = new Date(dateString);
@@ -223,7 +229,7 @@ const Blog = () => {
                     type="text"
                     id="name"
                     name="name"
-                    onChange={(e)=> setName(e.target.value)}
+                    onChange={e => setName(e.target.value)}
                     value={name}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Enter your name"
@@ -240,7 +246,7 @@ const Blog = () => {
                   <textarea
                     id="comment"
                     name="comment"
-                    onChange={(e) => setContent(e.target.value)}
+                    onChange={e => setContent(e.target.value)}
                     value={content}
                     rows="4"
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
@@ -379,7 +385,9 @@ const Blog = () => {
 
       <Footer />
     </div>
-  ) : <Loader/>
+  ) : (
+    <Loader />
+  );
 };
 
 export default Blog;
