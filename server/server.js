@@ -22,7 +22,7 @@ app.use('/api/blog', blogRouter);
 const PORT =  process.env.PORT ||  3000;
 
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+    console.log(`http://localhost:${PORT}`)
 })
 
 export default app;
